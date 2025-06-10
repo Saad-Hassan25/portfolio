@@ -209,6 +209,56 @@ document.addEventListener("DOMContentLoaded", () => {
       observer.observe(el)
     })
   }
+
+  // Add click handlers for project cards
+  const projectCards = document.querySelectorAll(".project-card")
+
+  projectCards.forEach((card) => {
+    card.addEventListener("click", function (e) {
+      e.preventDefault()
+      const repoUrl = this.getAttribute("data-repo")
+
+      if (repoUrl) {
+        // Add a subtle click animation
+        this.style.transform = "translateY(-5px) scale(0.98)"
+
+        // Reset animation and redirect after a short delay
+        setTimeout(() => {
+          this.style.transform = ""
+          window.open(repoUrl, "_blank", "noopener,noreferrer")
+        }, 150)
+      }
+    })
+
+    // Add keyboard accessibility
+    card.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault()
+        this.click()
+      }
+    })
+
+    // Make cards focusable for keyboard navigation
+    card.setAttribute("tabindex", "0")
+    card.setAttribute("role", "button")
+    card.setAttribute("aria-label", `View ${card.querySelector(".card-title").textContent.trim()} repository on GitHub`)
+  })
+
+  // Add visual feedback for keyboard focus
+  const style = document.createElement("style")
+  style.textContent = `
+    .project-card:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 4px;
+      border-radius: 1rem;
+    }
+    
+    .project-card:focus .card {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+    }
+  `
+  document.head.appendChild(style)
 })
 
 // Add loading animation

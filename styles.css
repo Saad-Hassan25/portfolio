@@ -461,6 +461,75 @@ body {
   gap: 2rem;
 }
 
+.project-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+}
+
+.project-card .card {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card .card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.project-card:hover .card::before {
+  left: 100%;
+}
+
+.project-github-icon {
+  float: right;
+  color: #64748b;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-github-icon {
+  color: #3b82f6;
+  transform: scale(1.2);
+}
+
+.project-link-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 0.875rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-link-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-link-hint i {
+  color: #3b82f6;
+}
+
+/* Add active state for better UX */
+.project-card:active {
+  transform: translateY(-5px) scale(0.98);
+}
+
 .project-card .card {
   height: 100%;
   transition: all 0.3s ease;
