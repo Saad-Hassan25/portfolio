@@ -16,10 +16,10 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 window.addEventListener("scroll", () => {
   const navbar = document.querySelector(".navbar")
   if (window.scrollY > 50) {
-    navbar.style.background = "rgba(255, 255, 255, 0.95)"
-    navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.1)"
+    navbar.style.background = "rgba(8, 8, 12, 0.98)"
+    navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.3)"
   } else {
-    navbar.style.background = "rgba(255, 255, 255, 0.8)"
+    navbar.style.background = "rgba(10, 10, 15, 0.95)"
     navbar.style.boxShadow = "none"
   }
 })
@@ -96,12 +96,12 @@ style.textContent = `
             left: -100%;
             top: 70px;
             flex-direction: column;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(8, 8, 12, 0.98);
             backdrop-filter: blur(12px);
             width: 100%;
             text-align: center;
             transition: 0.3s;
-            box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 27px rgba(0, 0, 0, 0.4);
             padding: 2rem 0;
         }
         
@@ -304,6 +304,21 @@ const revealSections = () => {
     }
   })
 }
+
+// Contact form handler
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("contactForm");
+  const formMessage = document.getElementById("formMessage");
+
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      formMessage.textContent = "Thank you for reaching out! I'll get back to you soon.";
+      form.reset();
+    });
+  }
+});
+
 
 // Initialize section reveals
 document.querySelectorAll("section").forEach((section) => {
